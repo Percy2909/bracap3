@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BRACAP — Europe Made Simple for B2B Travel Partners</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  :root {
+    --bg: #FFFFFF;
+    --dark: #111111;
+    --mid: #444444;
+    --light: #888888;
+    --border: #E5E5E5;
+    --accent: #1A1A1A;
+    --btn-bg: #111111;
+    --btn-text: #ffffff;
+    --section-bg: #F7F7F7;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px;
+    height: 72px;
+  }
+  .nav-logo img { height: 36px; object-fit: contain; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    font-size: 13px; font-weight: 500;
+    text-decoration: none; color: var(--dark);
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
+  .nav-links a:hover { color: #555; }
+  .nav-lang {
+    font-size: 13px; font-weight: 500; color: var(--dark);
+    border: 1px solid var(--border); padding: 6px 14px;
+    background: none; cursor: pointer;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 80px 48px 0;
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center;
+    background: #fff;
+  }
+  .hero-subtitle {
+    font-size: 18px; font-weight: 400; color: var(--mid);
+    margin-bottom: 8px; letter-spacing: 0.01em;
+  }
+  .hero-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(52px, 7vw, 96px);
+    font-weight: 300; line-height: 1.0;
+    color: var(--dark);
+    margin-bottom: 28px;
+  }
+  .hero-desc {
+    font-size: 16px; font-weight: 400; color: var(--mid);
+    max-width: 540px; line-height: 1.65; margin-bottom: 36px;
+  }
+  .btn-primary {
+    display: inline-block;
+    font-size: 14px; font-weight: 600;
+    text-decoration: none;
+    padding: 14px 36px;
+    background: var(--btn-bg); color: var(--btn-text);
+    border-radius: 3px;
+    transition: background 0.2s;
+    margin-bottom: 56px;
+  }
+  .btn-primary:hover { background: #333; }
+
+  .hero-video-wrap {
+    width: 100%; max-width: 900px;
+    position: relative; border-radius: 8px; overflow: hidden;
+    aspect-ratio: 16/9;
+    cursor: pointer;
+  }
+  .hero-video-thumb {
+    width: 100%; height: 100%; object-fit: cover;
+    display: block;
+  }
+  .hero-play {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 72px; height: 72px; border-radius: 50%;
+    background: rgba(255,255,255,0.92);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.2s, background 0.2s;
+  }
+  .hero-video-wrap:hover .hero-play { transform: translate(-50%,-50%) scale(1.1); background: #fff; }
+  .hero-play svg { width: 22px; height: 22px; margin-left: 4px; }
+
+  /* ── STATS ── */
+  .stats-section {
+    padding: 80px 48px;
+    background: #fff;
+    text-align: center;
+  }
+  .stats-eyebrow {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--light);
+    margin-bottom: 12px;
+  }
+  .stats-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 300; color: var(--dark);
+    margin-bottom: 56px;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 8px; overflow: hidden;
+  }
+  .stat-item {
+    padding: 36px 20px;
+    border-right: 1px solid var(--border);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Fraunces', serif;
+    font-size: 42px; font-weight: 300; line-height: 1;
+    color: var(--dark);
+  }
+  .stat-label {
+    font-size: 12px; font-weight: 500; color: var(--light);
+    text-align: center; line-height: 1.4;
+  }
+
+  /* ── MARKETS ── */
+  .markets-section {
+    padding: 80px 48px;
+    background: var(--section-bg);
+  }
+  .section-eyebrow {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--light);
+    margin-bottom: 48px; text-align: center;
+  }
+  .markets-grid {
+    display: flex; flex-wrap: wrap; gap: 12px;
+    justify-content: center;
+  }
+  .market-chip {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 22px;
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 14px; font-weight: 500; color: var(--dark);
+    transition: box-shadow 0.2s;
+  }
+  .market-chip:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+  .market-chip .flag { font-size: 22px; }
+
+  /* ── DESTINATIONS / TRIP PROPOSAL ── */
+  .destinations-section {
+    padding: 80px 48px;
+    background: #fff;
+    overflow: hidden;
+  }
+  .destinations-header {
+    text-align: center; margin-bottom: 48px;
+  }
+  .destinations-header .eyebrow {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--light); margin-bottom: 12px;
+  }
+  .destinations-header h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 300; color: var(--dark);
+  }
+
+  /* SCROLLING PHOTO STRIP */
+  .photo-strip-wrap { overflow: hidden; position: relative; }
+  .photo-strip {
+    display: flex; gap: 16px;
+    animation: stripScroll 30s linear infinite;
+    width: max-content;
+  }
+  .photo-strip:hover { animation-play-state: paused; }
+  @keyframes stripScroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  .photo-card {
+    flex-shrink: 0;
+    width: 220px; height: 340px;
+    border-radius: 8px; overflow: hidden;
+    position: relative; cursor: pointer;
+  }
+  .photo-card img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .photo-card:hover img { transform: scale(1.05); }
+  .photo-label {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 40px 16px 16px;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+    font-size: 14px; font-weight: 600; color: #fff;
+  }
+
+  .destinations-cta {
+    text-align: center; margin-top: 48px;
+  }
+  .btn-outline {
+    display: inline-block;
+    font-size: 14px; font-weight: 600;
+    text-decoration: none;
+    padding: 13px 36px;
+    border: 2px solid var(--dark); color: var(--dark);
+    border-radius: 3px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-outline:hover { background: var(--dark); color: #fff; }
+
+  /* ── BLOG ── */
+  .blog-section {
+    padding: 80px 48px;
+    background: var(--section-bg);
+  }
+  .blog-header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 48px;
+  }
+  .blog-header-left .eyebrow {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--light); margin-bottom: 8px;
+  }
+  .blog-header-left h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 300; color: var(--dark);
+  }
+  .blog-see-all {
+    font-size: 13px; font-weight: 600; text-decoration: none;
+    color: var(--dark); border-bottom: 2px solid var(--dark);
+    padding-bottom: 2px; white-space: nowrap;
+    transition: opacity 0.2s;
+  }
+  .blog-see-all:hover { opacity: 0.6; }
+
+  .blog-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+  .blog-card { cursor: pointer; }
+  .blog-img { border-radius: 6px; overflow: hidden; margin-bottom: 16px; }
+  .blog-img img {
+    width: 100%; aspect-ratio: 16/9; object-fit: cover;
+    transition: transform 0.4s;
+  }
+  .blog-card:hover .blog-img img { transform: scale(1.04); }
+  .blog-card-title {
+    font-size: 16px; font-weight: 600; line-height: 1.45;
+    color: var(--dark);
+  }
+
+  /* ── PARTNERS ── */
+  .partners-section {
+    padding: 72px 48px;
+    background: #fff;
+    text-align: center;
+  }
+  .partners-section .section-eyebrow { margin-bottom: 36px; }
+  .partners-section h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 300; color: var(--dark);
+    margin-bottom: 52px;
+  }
+  .partners-row {
+    display: flex; align-items: center; justify-content: center;
+    flex-wrap: wrap; gap: 48px;
+  }
+  .partner-logo {
+    height: 36px; object-fit: contain;
+    filter: grayscale(1); opacity: 0.5;
+    transition: opacity 0.2s, filter 0.2s;
+  }
+  .partner-logo:hover { filter: grayscale(0); opacity: 1; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #111;
+    color: #fff;
+    padding: 64px 48px 36px;
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px; margin-bottom: 48px;
+  }
+  .footer-brand img { height: 32px; filter: brightness(0) invert(1); margin-bottom: 16px; }
+  .footer-brand-text {
+    font-size: 13px; font-weight: 400; line-height: 1.7;
+    color: rgba(255,255,255,0.55); margin-bottom: 24px;
+  }
+  .footer-socials { display: flex; gap: 14px; }
+  .footer-social {
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.2);
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none; color: rgba(255,255,255,0.6);
+    font-size: 13px; font-weight: 600;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .footer-social:hover { border-color: #fff; color: #fff; }
+  .footer-col h4 {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: rgba(255,255,255,0.45);
+    margin-bottom: 20px;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 12px; }
+  .footer-col a {
+    font-size: 13px; font-weight: 400; color: rgba(255,255,255,0.7);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .footer-col a:hover { color: #fff; }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 24px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-copy { font-size: 12px; color: rgba(255,255,255,0.35); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .hero, .stats-section, .markets-section, .destinations-section,
+    .blog-section, .partners-section { padding: 60px 20px; }
+    .stats-grid { grid-template-columns: repeat(3, 1fr); }
+    .stat-item:nth-child(4), .stat-item:nth-child(5) { border-top: 1px solid var(--border); }
+    .blog-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+    footer { padding: 48px 20px 28px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <img src="https://framerusercontent.com/images/VKrhtAxm1pJ2IY0K6lRJUwzmzOc.png" alt="BRACAP">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#">Destinations</a></li>
+    <li><a href="#">Tailor Made & Bespoke</a></li>
+    <li><a href="#">Educational & Student Travels</a></li>
+    <li><a href="#">Senior & Leisure Groups</a></li>
+    <li><a href="#">Why BRACAP</a></li>
+  </ul>
+  <button class="nav-lang">English ▾</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-subtitle">Europe Made Simple for</p>
+  <h1 class="hero-title">B2B Travel Partners</h1>
+  <p class="hero-desc">We craft tailor-made group travel experiences worldwide, blending local expertise, sustainability, and dedicated care.</p>
+  <a href="#" class="btn-primary">See Itineraries</a>
+
+  <div class="hero-video-wrap">
+    <img class="hero-video-thumb"
+      src="https://framerusercontent.com/images/5ILRvlYXf72kHSVHqpa3snGzjU.jpg"
+      alt="BRACAP travel video thumbnail">
+    <div class="hero-play">
+      <svg viewBox="0 0 24 24" fill="none">
+        <polygon points="6,3 20,12 6,21" fill="#111" />
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- STATS / WHY TRUST US -->
+<section class="stats-section">
+  <p class="stats-eyebrow">Why Trust Us?</p>
+  <h2 class="stats-title">Built on Experience</h2>
+  <div class="stats-grid">
+    <div class="stat-item">
+      <div class="stat-num">17+</div>
+      <div class="stat-label">Years of Experience</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">Global</div>
+      <div class="stat-label">Clients</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">30+</div>
+      <div class="stat-label">European Destinations</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">5000+</div>
+      <div class="stat-label">Organized Trips</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">24/7</div>
+      <div class="stat-label">Emergency Support</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARKETS -->
+<section class="markets-section">
+  <p class="section-eyebrow">Key Markets Served</p>
+  <div class="markets-grid">
+    <div class="market-chip"><span class="flag">🇺🇸</span> USA</div>
+    <div class="market-chip"><span class="flag">🇲🇽</span> Mexico</div>
+    <div class="market-chip"><span class="flag">🇨🇦</span> Canada</div>
+    <div class="market-chip"><span class="flag">🇬🇧</span> UK</div>
+    <div class="market-chip"><span class="flag">🇮🇪</span> Ireland</div>
+    <div class="market-chip"><span class="flag">🇩🇪</span> Germany</div>
+    <div class="market-chip"><span class="flag">🇳🇱</span> Netherlands</div>
+    <div class="market-chip"><span class="flag">🇮🇳</span> India</div>
+    <div class="market-chip"><span class="flag">🇦🇺</span> Australia</div>
+    <div class="market-chip"><span class="flag">🇳🇿</span> New Zealand</div>
+  </div>
+</section>
+
+<!-- DESTINATIONS / FREE TRIP PROPOSAL -->
+<section class="destinations-section">
+  <div class="destinations-header">
+    <p class="eyebrow">Hands on Deck</p>
+    <h2>Plan Your Free Trip Proposal</h2>
+  </div>
+
+  <div class="photo-strip-wrap">
+    <div class="photo-strip">
+      <!-- Set 1 -->
+      <div class="photo-card">
+        <img src="https://framerusercontent.com/images/SfC1QAz0rgHkdl6XoQurJE54VNg.jpg" alt="Venice">
+        <div class="photo-label">Venice</div>
+      </div>
+      <div class="photo-card">
+        <img src="https://framerusercontent.com/images/EnnxON6KZsL23Zik9oA0wvG8U.jpg" alt="Barcelona">
+        <div class="photo-label">Barcelona</div>
+      </div>
+      <div class="photo-card">
+        <img src="https://framerusercontent.com/images/eOtKNgkU6VCSaCZBuMSLQdCeU4.jpg" alt="Lisboa">
+        <div class="photo-label">Lisboa</div>
+      </div>
+      <div class="photo-card">
+        <img src="https://framerusercontent.com/images/zTkzukJl2TxA3rmlwWO1ySB0Lo.jpg" alt="Cappadocia">
+        <div class="photo-label">Cappadocia</div>
+      </div>
+      <div class="photo-card">
+        <img src="https://framerusercontent.com/images/sUrYdkDUq9pfIM5o12DndSxkuWU.png" alt="Madrid">
+        <div class="photo-label">Madrid</div>
+      </div>
+      <!-- Set 2 (duplicate for seamless loop) -->
+      <div class="photo-card">
+        <img src="https://framerusercontent.com/images/SfC1QAz0rgHkdl6XoQurJE54VNg.jpg" alt="Venice">
+        <div class="photo-label">Venice</div>
+      </div>
+      <div class="photo-card">
+        <img src="https://framerusercontent.com/images/EnnxON6KZsL23Zik9oA0wvG8U.jpg" alt="Barcelona">
+        <div class="photo-label">Barcelona</div>
+      </div>
+      <div class="photo-card">
+        <img src="https://framerusercontent.com/images/eOtKNgkU6VCSaCZBuMSLQdCeU4.jpg" alt="Lisboa">
+        <div class="photo-label">Lisboa</div>
+      </div>
+      <div class="photo-card">
+        <img src="https://framerusercontent.com/images/zTkzukJl2TxA3rmlwWO1ySB0Lo.jpg" alt="Cappadocia">
+        <div class="photo-label">Cappadocia</div>
+      </div>
+      <div class="photo-card">
+        <img src="https://framerusercontent.com/images/sUrYdkDUq9pfIM5o12DndSxkuWU.png" alt="Madrid">
+        <div class="photo-label">Madrid</div>
+      </div>
+      <!-- Set 3 -->
+      <div class="photo-card">
+        <img src="https://framerusercontent.com/images/SfC1QAz0rgHkdl6XoQurJE54VNg.jpg" alt="Venice">
+        <div class="photo-label">Venice</div>
+      </div>
+      <div class="photo-card">
+        <img src="https://framerusercontent.com/images/EnnxON6KZsL23Zik9oA0wvG8U.jpg" alt="Barcelona">
+        <div class="photo-label">Barcelona</div>
+      </div>
+      <div class="photo-card">
+        <img src="https://framerusercontent.com/images/eOtKNgkU6VCSaCZBuMSLQdCeU4.jpg" alt="Lisboa">
+        <div class="photo-label">Lisboa</div>
+      </div>
+      <div class="photo-card">
+        <img src="https://framerusercontent.com/images/zTkzukJl2TxA3rmlwWO1ySB0Lo.jpg" alt="Cappadocia">
+        <div class="photo-label">Cappadocia</div>
+      </div>
+      <div class="photo-card">
+        <img src="https://framerusercontent.com/images/sUrYdkDUq9pfIM5o12DndSxkuWU.png" alt="Madrid">
+        <div class="photo-label">Madrid</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="destinations-cta">
+    <a href="#" class="btn-outline">Let's Meet</a>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section class="blog-section">
+  <div class="blog-header">
+    <div class="blog-header-left">
+      <p class="eyebrow">Have a Look At</p>
+      <h2>Our Blog</h2>
+    </div>
+    <a href="#" class="blog-see-all">See Our Blog</a>
+  </div>
+  <div class="blog-grid">
+    <div class="blog-card">
+      <div class="blog-img">
+        <img src="https://framerusercontent.com/images/e5U2mXhlQMbPzkitF3GkG3O78.png" alt="Blog post 1">
+      </div>
+      <h3 class="blog-card-title">Beyond the Guidebook: 7 Hidden Routes That Redefine Active Travel</h3>
+    </div>
+    <div class="blog-card">
+      <div class="blog-img">
+        <img src="https://framerusercontent.com/images/WyoceF2vDPs4SVIWmBGg4NTalI.png" alt="Blog post 2">
+      </div>
+      <h3 class="blog-card-title">Pedal, Hike, Repeat: How to Experience a Destination Like a Local</h3>
+    </div>
+    <div class="blog-card">
+      <div class="blog-img">
+        <img src="https://framerusercontent.com/images/8gDE50BNHkKQXJgnvcGkLLAwpM.png" alt="Blog post 3">
+      </div>
+      <h3 class="blog-card-title">From Coastlines to Countryside: The Ultimate Active Travel Bucket List</h3>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section class="partners-section">
+  <p class="section-eyebrow">Our Partners</p>
+  <h2>We Worked With</h2>
+  <div class="partners-row">
+    <img class="partner-logo" src="https://framerusercontent.com/images/hUNUpxiLNXI3P502KZnyhPGhpM.png" alt="Partner 1">
+    <img class="partner-logo" src="https://framerusercontent.com/images/YZhXSU03lv9tImhPThQR25WZmY.png" alt="Partner 2">
+    <img class="partner-logo" src="https://framerusercontent.com/images/iXaApeGH6dSSlM9boru4qX7GKQ.png" alt="Partner 3">
+    <img class="partner-logo" src="https://framerusercontent.com/images/YjoHhdyj2pg56nU5xSpXs2Lvh8.png" alt="Partner 4">
+    <img class="partner-logo" src="https://framerusercontent.com/images/BKdK2JFYlvw3COKOmdikF8rNNv4.png" alt="Partner 5">
+    <img class="partner-logo" src="https://framerusercontent.com/images/pZrYZi2ZpcvaWxGfoXSSevG7o.png" alt="Partner 6">
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="https://framerusercontent.com/images/VKrhtAxm1pJ2IY0K6lRJUwzmzOc.png" alt="BRACAP">
+      <p class="footer-brand-text">
+        <strong style="color:#fff">Europe Made Simple</strong> <strong style="color:#fff">for B2B Travel Partners</strong><br>
+        C/ Joaquim Ruyra, 9-11, Barcelona
+      </p>
+      <div class="footer-socials">
+        <a href="https://linkedin.com" class="footer-social">in</a>
+        <a href="https://facebook.com" class="footer-social">f</a>
+        <a href="https://instagram.com" class="footer-social">ig</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#">Growth Marketing</a></li>
+        <li><a href="#">Influencers</a></li>
+        <li><a href="#">Affiliates</a></li>
+        <li><a href="#">The Box</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Us</h4>
+      <ul>
+        <li><a href="#">Contact Page</a></li>
+        <li><a href="#">Book a Call</a></li>
+        <li><a href="#">E-mail</a></li>
+        <li><a href="#">Phone</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Socials</h4>
+      <ul>
+        <li><a href="#">LinkedIn</a></li>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Cookies</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">All rights reserved. Bracap 2026</span>
+  </div>
+</footer>
+
+</body>
+</html>
